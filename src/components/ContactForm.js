@@ -48,9 +48,14 @@ function ContactForm() {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    if (terms) setFormIsValid(true);
-    if (subject !== 'bills') setFormIsValid(false);
-  }, [terms, subject]);
+    // if (subject !== 'bills') setFormIsValid(false);
+    // do not alow to send if name has lest than 3 letters
+    if (terms && name.length >= 3) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [terms, subject, name]);
 
   // const preventToSend = () => {
   //   let prevent = true;
