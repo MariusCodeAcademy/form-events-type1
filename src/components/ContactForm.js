@@ -7,18 +7,31 @@ function ContactForm() {
     setName(e.target.value);
   };
   // create age state and conenct to age input (value, onChange)
+  const [age, setAge] = useState('');
+  const onAgeChange = (e) => {
+    setAge(Number(e.target.value));
+  };
   // create textarea state and conenct to textarea  (value, onChange)
+  const [mainText, setMainText] = useState('');
+  const onMainTextChange = (e) => {
+    setMainText(e.target.value);
+  };
   // create termsConditions state and conenct to termsConditions input (value, onChange)
+  const [terms, setTerms] = useState(false);
+  const onTermsChange = (e) => {
+    // toggle terms false->true->false->.....
+    setTerms(!terms);
+  };
   // create select state and conenct to select input (value, onChange)
 
   return (
     <div className='w-50 text-left'>
       <div className='results'>
         <p>Name: {name}</p>
-        <p>Age: {}</p>
+        <p>Age: {age}</p>
         <p>Subject: {}</p>
-        <p>Text: {}</p>
-        <p>Terms and Conditions: {}</p>
+        <p>Text: {mainText}</p>
+        <p>Terms and Conditions: {terms.toString()}</p>
       </div>
       <form>
         <input
@@ -28,7 +41,13 @@ function ContactForm() {
           value={name}
           onChange={onNameChange}
         />
-        <input type='number' className='form-control' placeholder='Age' />
+        <input
+          type='number'
+          className='form-control'
+          placeholder='Age'
+          value={age}
+          onChange={onAgeChange}
+        />
         <select className='form-control' name='subject' id=''>
           <option value='bills'>Bills</option>
           <option value='information'>Information</option>
@@ -36,12 +55,20 @@ function ContactForm() {
         </select>
         <textarea
           cols='30'
-          rows='10'
+          rows='3'
           className='form-control'
           placeholder='your text'
+          value={mainText}
+          onChange={onMainTextChange}
         ></textarea>
         <div className='form-check'>
-          <input className='form-check-input' type='checkbox' id='terms' />
+          <input
+            value={terms}
+            onChange={onTermsChange}
+            className='form-check-input'
+            type='checkbox'
+            id='terms'
+          />
           <label className='form-check-label' htmlFor='terms'>
             Terms and Conditions
           </label>
