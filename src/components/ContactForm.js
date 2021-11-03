@@ -23,17 +23,27 @@ function ContactForm() {
     setTerms(!terms);
   };
   // create select state and conenct to select input (value, onChange)
+  const [subject, setSubject] = useState('information');
+  const onSubChange = (e) => {
+    setSubject(e.target.value);
+  };
+
+  // form submit action
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('subminting form');
+  };
 
   return (
     <div className='w-50 text-left'>
       <div className='results'>
         <p>Name: {name}</p>
         <p>Age: {age}</p>
-        <p>Subject: {}</p>
+        <p>Subject: {subject}</p>
         <p>Text: {mainText}</p>
         <p>Terms and Conditions: {terms.toString()}</p>
       </div>
-      <form>
+      <form onSubmit={onFormSubmit}>
         <input
           type='text'
           className='form-control'
@@ -48,7 +58,12 @@ function ContactForm() {
           value={age}
           onChange={onAgeChange}
         />
-        <select className='form-control' name='subject' id=''>
+        <select
+          value={subject}
+          onChange={onSubChange}
+          className='form-control'
+          name='subject'
+        >
           <option value='bills'>Bills</option>
           <option value='information'>Information</option>
           <option value='payments'>Payments</option>
@@ -73,7 +88,7 @@ function ContactForm() {
             Terms and Conditions
           </label>
         </div>
-        <button className='btn btn-dark' type='submit'>
+        <button disabled={false} className='btn btn-dark' type='submit'>
           Send
         </button>
       </form>
