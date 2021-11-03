@@ -34,6 +34,17 @@ function ContactForm() {
     console.log('subminting form');
   };
 
+  // allow to send form only if term is true and subject is bills
+  const preventToSend = () => {
+    let prevent = true;
+
+    if (terms) prevent = false;
+
+    if (subject !== 'bills') prevent = true;
+
+    return prevent;
+  };
+
   return (
     <div className='w-50 text-left'>
       <div className='results'>
@@ -88,7 +99,11 @@ function ContactForm() {
             Terms and Conditions
           </label>
         </div>
-        <button disabled={false} className='btn btn-dark' type='submit'>
+        <button
+          disabled={preventToSend()}
+          className='btn btn-dark'
+          type='submit'
+        >
           Send
         </button>
       </form>
