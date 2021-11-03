@@ -1,5 +1,7 @@
 import './App.css';
-import ContactForm from './components/ContactForm';
+import CounterList from './components/CounterList';
+// import ContactForm from './components/ContactForm';
+// import CounterSimple from './components/CounterSimple';
 // import Counter from './components/Counter';
 
 function App() {
@@ -7,7 +9,8 @@ function App() {
     <div className='App container'>
       <h1>Input forms</h1>
       {/* <Counter /> */}
-      <ContactForm />
+      {/* <ContactForm /> */}
+      <CounterList />
     </div>
   );
 }
