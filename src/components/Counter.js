@@ -16,6 +16,10 @@ export default function Counter() {
     console.log(event.target.value);
   };
 
+  const onCounterEnter = (event) => {
+    setCounter(Number(event.target.value));
+  };
+
   return (
     <div>
       <h2>Counter: {counterTitle}</h2>
@@ -24,7 +28,13 @@ export default function Counter() {
         inc
       </button>{' '}
       <br />
-      <input type='text' placeholder='start value' /> <br />
+      <input
+        type='number'
+        placeholder='start value'
+        value={counter}
+        onChange={onCounterEnter}
+      />{' '}
+      <br />
       <input
         type='text'
         placeholder='title'
