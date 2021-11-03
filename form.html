@@ -12,13 +12,13 @@
   <h2>Vanila html</h2>
   <div class='inputs'>
     <input type="text" placeholder='title'>
-    <input type="text" placeholder='counter'>
+    <input type="text" placeholder='counter' name='bob'>
   </div>
   <script>
     const inputs = document.querySelector('.inputs')
     inputs.addEventListener('click', (event) => {
       console.log('clicked');
-      console.log(event.target.value)
+      console.log(event.target.name)
     })
   </script>
 

@@ -9,10 +9,11 @@ export default function Counter() {
     setCounter(counter + 1);
   };
 
-  const onTitleChange = () => {
+  const onTitleChange = (event) => {
     console.log('title change');
     // get value entered and update counterTitle
-    setCounterTitle('Dog');
+    setCounterTitle(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
