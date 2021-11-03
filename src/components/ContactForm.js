@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function ContactForm() {
   // create name state and conenct to name input (value, onChange)
@@ -31,19 +31,38 @@ function ContactForm() {
   // form submit action
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log('subminting form');
+    // create one object from all data
+
+    const outFormData = {
+      name,
+      age,
+      subject,
+      mainText,
+      terms,
+    };
+
+    console.log('subminting form', outFormData);
   };
 
   // allow to send form only if term is true and subject is bills
-  const preventToSend = () => {
-    let prevent = true;
+  const [formIsValid, setFormIsValid] = useState(false);
 
-    if (terms) prevent = false;
+  useEffect(() => {
+    if (terms) setFormIsValid(true);
+    if (subject !== 'bills') setFormIsValid(false);
+  }, [terms, subject]);
 
-    if (subject !== 'bills') prevent = true;
+  // const preventToSend = () => {
+  //   let prevent = true;
 
-    return prevent;
-  };
+  //   if (terms) prevent = false;
+
+  //   if (subject !== 'bills') prevent = true;
+
+  //   // do not alow to send if name has lest than 3 letters
+
+  //   return prevent;
+  // };
 
   return (
     <div className='w-50 text-left'>
@@ -99,11 +118,7 @@ function ContactForm() {
             Terms and Conditions
           </label>
         </div>
-        <button
-          disabled={preventToSend()}
-          className='btn btn-dark'
-          type='submit'
-        >
+        <button disabled={!formIsValid} className='btn btn-dark' type='submit'>
           Send
         </button>
       </form>
