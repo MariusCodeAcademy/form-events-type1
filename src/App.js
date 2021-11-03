@@ -1,6 +1,6 @@
 import './App.css';
 import ContactForm from './components/ContactForm';
-import Counter from './components/Counter';
+// import Counter from './components/Counter';
 
 function App() {
   return (
