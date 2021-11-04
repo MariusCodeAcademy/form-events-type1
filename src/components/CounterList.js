@@ -1,5 +1,6 @@
 import CounterSimple from './CounterSimple';
 import { useState } from 'react';
+import AddCounter from './AddCounter';
 
 const initCounters = [
   {
@@ -30,12 +31,8 @@ function CounterList() {
   // get how many counters we have
   // get average counter ammount
   const [counters, setCounters] = useState(initCounters);
-  const [newCounterTitle, setNewCounterTitle] = useState('');
-  const onNewCounterTitleEntry = (e) => {
-    setNewCounterTitle(e.target.value);
-  };
 
-  const onAddNewCounter = () => {
+  const onAddNewCounter = (newCounterTitle) => {
     // take the title entered
     // create new counter obj
     const newCounterObj = {
@@ -46,7 +43,6 @@ function CounterList() {
     // add object to current counters without modifying original
 
     setCounters([...counters, newCounterObj]);
-    setNewCounterTitle('');
   };
 
   const handleIncrement = (id) => {
@@ -63,16 +59,7 @@ function CounterList() {
   return (
     <>
       <h2>Counter list</h2>
-      <input
-        value={newCounterTitle}
-        onChange={onNewCounterTitleEntry}
-        className='form-control'
-        type='text'
-        placeholder='new counter'
-      />
-      <button onClick={onAddNewCounter} className='btn btn-outline-primary'>
-        add
-      </button>
+      <AddCounter onAddNewCounter={onAddNewCounter} />
       <div className='d-flex'>
         {counters.map((counterObj) => (
           <CounterSimple
